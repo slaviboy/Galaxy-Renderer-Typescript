@@ -23,37 +23,30 @@ export class VertexBufferLines extends VertexBufferBase<VertexColor>
 
 	protected getVertexShaderSource(): string {
 		return `#version 300 es
+				precision mediump float;
+				uniform mat4 projMat;
+				uniform mat4 viewMat;
+				layout(location = 0) in vec3 position;
+				layout(location = 1) in vec4 color;
+				out vec4 vertexColor;
 
-precision mediump float;
-
-uniform mat4 projMat;
-uniform mat4 viewMat;
-
-layout(location = 0) in vec3 position;
-layout(location = 1) in vec4 color;
-
-out vec4 vertexColor;
-
-void main()
-{
-	gl_Position =  projMat * vec4(position, 1);
-	gl_PointSize = 2.0;
-	vertexColor = color;
-}`;
+				void main()
+				{
+					gl_Position =  projMat * vec4(position, 1);
+					gl_PointSize = 2.0;
+					vertexColor = color;
+				}`;
 	}
 
 	protected getFragmentShaderSource(): string {
 		return `#version 300 es 
+				precision mediump float;
+				out vec4 FragColor;
+				in vec4 vertexColor;
 
-precision mediump float;
-
-out vec4 FragColor;
-
-in vec4 vertexColor;
-
-void main()
-{
-	FragColor = vertexColor;
-}`;
+				void main()
+				{
+					FragColor = vertexColor;
+				}`;
 	}
 }
