@@ -1,0 +1,22 @@
+{
+  "name": "galaxy-renderer",
+  "version": "1.0.0",
+  "description": "",
+    "main": "./src/GalaxyRenderer.ts",
+  "scripts": {
+    "build": "webpack --mode development",
+    "prod": "webpack --mode production"
+  },
+  "keywords": ["galaxy", "simulation", "density wave theory"],
+  "author":"Ingo Berg <galaxy-renderer@beltoforion.de>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "ts-loader": "^9.5.0"
+  },
+  "dependencies": {
+    "gl-matrix": "^3.3.0"
+  }
+}

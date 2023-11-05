@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Galaxies Renderer</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="center">
+			<div class="row" style="text-align: left;">
+				<div class="column-30 controls">
+					<form>
+						<fieldset>
+							<h3>Galaxy presets</h3>
+							<select id="cbPreset" name="viewpoint" onChange="onSelectPreset()">
+								<option value="0" selected>Sample 1</option>
+								<option value="1">Two arms - 1</option>
+								<option value="2">Two arms - 2</option>
+								<option value="3">Two arms - 3</option>
+								<option value="5">Two arms - 4</option>
+								<option value="4">Two arms; Big Core</option>
+								<option value="6">Eye of Sauron</option>
+								<option value="7">Three arms - cool</option>
+								<option value="8">Three arms - hot</option>
+							</select>
+						</fieldset>
+
+						<fieldset>
+							<h3>Physics</h3>
+							<div class="checkbox">
+								<input type="checkbox" value="true" id="cbHasDarkMatter" onChange="onHasDarkMatter()" />
+								<label for="cbHasDarkMatter">dark matter</label><br />
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" value="true" id="cbShowVelocity" onChange="onShowVelocity()" />
+								<label for="cbShowVelocity">velocity curve</label><br />
+							</div>
+
+							<div class="slider">
+								<label for="slTimeStep">Time step length in years</label><br />
+								<input type="range" min="0" max="1000000" value="50" class="slider" id="slTimeStep">
+								<span id="labelTimeStep"></span>
+							</div>
+
+							<div class="slider">
+								<label for="slBaseTemp">Base Temperature in K</label><br />
+								<input type="range" min="1000" max="10000" step="10" class="slider" id="slBaseTemp">
+								<span id="labelBaseTemp"></span>
+							</div>
+						</fieldset>
+
+						<fieldset>
+							<h3>Display</h3>
+							<div class="checkbox">
+								<input type="checkbox" value="true" id="cbShowDensityWaves"
+									onChange="onShowDensityWaves()" />
+								<label for="cbShowDensityWaves">density waves</label><br />
+							</div>
+
+							<div class="checkbox">
+								<input type="checkbox" value="true" id="cbShowAxis" onChange="onShowAxis()" />
+								<label for="cbShowAxis">axis</label><br />
+							</div>
+
+							<div class="checkbox">
+								<input type="checkbox" value="true" id="cbShowStars" onChange="onShowStars()" />
+								<label for="cbShowStars">stars</label><br />
+							</div>
+
+							<div class="checkbox">
+								<input type="checkbox" value="true" id="cbShowDust" onChange="onShowDust()" />
+								<label for="cbShowDust">dust</label><br />
+							</div>
+
+							<div class="checkbox">
+								<input type="checkbox" value="true" id="cbShowDustFilaments"
+									onChange="onShowDustFilaments()" />
+								<label for="cbShowDustFilaments">dust filaments</label><br />
+							</div>
+
+							<div class="checkbox">
+								<input type="checkbox" value="true" id="cbShowH2" onChange="onShowH2()" />
+								<label for="cbShowH2">H2 regions</label><br />
+							</div>
+
+							<div class="slider">
+								<label for="slFov">Field of view</label><br />
+								<input type="range" min="5000" max="50000" value="50" class="slider" id="slFov">
+								<span id="labelFov"></span>
+							</div>
+
+							<div class="slider">
+								<label for="slDustSize">Dust render size</label><br />
+								<input type="range" min="100" max="300" value="187" class="slider" id="slDustSize">
+								<span id="labelDustRenderSize"></span>
+							</div>
+						</fieldset>
+
+					</form>
+				</div> 
+
+				<div class="column-70">
+					<h1 style="text-align: center; margin:px;">Procedural generation of spiral Galaxies</h1>
+
+					<div style="position:relative;">
+						<canvas id="cvGalaxy" width="700" height="700"></canvas>
+					</div>
+
+				</div>
+
+				<div class="column-30 controls">
+					<form>
+						<fieldset>
+							<h3>Density Waves</h3>
+							<div class="slider">
+								<label for="slCoreRad">Galaxy core radius in ly</label><br />
+								<input type="range" min="0.05" max="0.95" step="0.01" class="slider" id="slCoreRad">
+								<span id="labelCoreRad"></span>
+							</div>
+
+							<div class="slider">
+								<label for="slRad">Galaxy radius in ly</label><br />
+								<input type="range" min="1000" max="20000" class="slider" id="slRad">
+								<span id="labelRad"></span>
+							</div>
+
+							<div class="slider">
+								<label for="slAngOffset">Angular Offset in degree</label><br />
+								<input type="range" min="0.0001" max="0.0008" step="0.00001" class="slider"
+									id="slAngOffset">
+								<span id="labelAngularOffset"></span>
+							</div>
+
+							<div class="slider">
+								<label for="slInnerEx">Inner Excentricity</label><br />
+								<input type="range" min="0" max="2" step="0.01" class="slider" id="slInnerEx">
+								<span id="labelInnerEx"></span>
+							</div>
+
+							<div class="slider">
+								<label for="slOutterEx">Outter Excentricity</label><br />
+								<input type="range" min="0" max="2" step="0.01" class="slider" id="slOutterEx">
+								<span id="labelOutterEx"></span>
+							</div>
+
+							<div class="slider">
+								<label for="slPertN">Number Ellipse Disturbances</label><br />
+								<input type="range" min="0" max="4" step="1" class="slider" id="slPertN">
+								<span id="labelPertN"></span>
+							</div>
+
+							<div class="slider">
+								<label for="slPertAmp">Ellipse Disturbance Damping factor</label><br />
+								<input type="range" min="2" max="100" step="1" class="slider" id="slPertAmp">
+								<span id="labelPertAmp"></span>
+							</div>
+
+						</fieldset>
+					</form>
+				</div> 
+			</div> 
+		</div>
+	</div> 
+
+	<script src="./js/galaxy-renderer.js"></script>
+	<script src="./js/script.js"></script>
+</body>
+</html>
