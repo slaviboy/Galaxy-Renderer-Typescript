@@ -129,14 +129,14 @@ export class UiController {
 
     public initilializeEditModeSlider(id: string, idLabel: string, prop: string): void {
         let slider: HTMLInputElement = document.getElementById(id) as HTMLInputElement
-        if (slider == null)
-            throw new Error("UiController.initilializeSlider(): Ther is no input element with that id!")
-
+        if (slider == null) {
+            throw new Error("UiController.initilializeSlider(): Ther is no input element with that id!");
+        }
         slider.value = (this as any)[prop]
         let label: HTMLElement = document.getElementById(idLabel) as HTMLElement;
         label.innerHTML = slider.value
-
         let self: UiController = this;
+        
         slider.oninput = function () {
             (self as any)[prop] = parseFloat(slider.value)
 

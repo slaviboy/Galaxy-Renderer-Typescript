@@ -79,9 +79,9 @@ export class GalaxyRenderer {
         this.canvas = canvas;
 
         this.gl = this.canvas.getContext("webgl2") as WebGL2RenderingContext;
-        if (this.gl === null)
+        if (this.gl === null) {
             throw new Error("Unable to initialize WebGL2. Your browser may not support it.");
-
+        }
         this.vertDensityWaves = new VertexBufferLines(this.gl, 2, this.gl.STATIC_DRAW);
         this.vertAxis = new VertexBufferLines(this.gl, 1, this.gl.STATIC_DRAW);
         this.vertVelocityCurve = new VertexBufferLines(this.gl, 1, this.gl.DYNAMIC_DRAW);
@@ -112,11 +112,9 @@ export class GalaxyRenderer {
     public set dustRenderSize(value: number) {
         this.dustRenderSizeBase = value;
         this.galaxy.dustRenderSize = Math.max(this.dustRenderSizeBase - 0.0026 * this._fov, 0);
-        //        this.galaxy.dustRenderSize = value;
     }
 
     public get dustRenderSize() {
-        //        return this.galaxy.dustRenderSize;
         return this.dustRenderSizeBase;
     }
 
@@ -285,10 +283,9 @@ export class GalaxyRenderer {
     }
 
     private updateAxis(): void {
-        if (this.vertAxis == null)
+        if (this.vertAxis == null) {
             throw new Error("Galaxyrenderer.updateAxis(): this.vertAxis is null!");
-
-        //        console.log("updating axis data.");
+        }
 
         let vert: VertexColor[] = [];
         let idx: number[] = [];
@@ -346,10 +343,9 @@ export class GalaxyRenderer {
     }
 
     private updateDensityWaves(): void {
-        if (this.vertDensityWaves == null)
+        if (this.vertDensityWaves == null) {
             throw new Error("GalaxyRenderer.updateDensityWaves(): this.vertDensityWaves is null!")
-
-        //        console.log("updating density waves.");
+        }
 
         let vert: VertexColor[] = []
         let idx: number[] = []
@@ -357,7 +353,6 @@ export class GalaxyRenderer {
         //
         // First add the density waves
         //
-
         const num: number = 100;
         let dr: number = this.galaxy.farFieldRad / num;
         for (let i = 0; i <= num; ++i) {
@@ -376,7 +371,6 @@ export class GalaxyRenderer {
         //
         // Add three circles at the boundaries of core, galaxy and galactic medium
         //
-
         const pertNum: number = 0;
         const pertAmp: number = 0;
         let r: number = this.galaxy.coreRad;
@@ -389,7 +383,6 @@ export class GalaxyRenderer {
         this.addEllipsisVertices(vert, idx, r, r, 0, pertNum, pertAmp, new Color(1, 0, 0, 0.5));
 
         this.vertDensityWaves.createBuffer(vert, idx, this.gl.LINE_STRIP);
-
         this.renderUpdateHint &= ~RenderUpdateHint.DENSITY_WAVES;
     }
 
@@ -437,10 +430,9 @@ export class GalaxyRenderer {
     }
 
     private updateStars(): void {
-        if (this.vertStars == null)
-            throw new Error("GalaxyRenderer.updateStars(): this.vertStars is null!")
-
-        console.log("updating stars.");
+        if (this.vertStars == null) {
+            throw new Error("GalaxyRenderer.updateStars(): this.vertStars is null!");
+        }
 
         let vert: VertexStar[] = [];
         let idx: number[] = [];
@@ -462,10 +454,9 @@ export class GalaxyRenderer {
     }
 
     private updateVelocityCurve(): void {
-        if (this.vertVelocityCurve == null)
-            throw new Error("GalaxyRenderer.updateVelocityCurve(): this.vertVelocityCurve is null!")
-
-        //        console.log("updating velocity curves.");
+        if (this.vertVelocityCurve == null) {
+            throw new Error("GalaxyRenderer.updateVelocityCurve(): this.vertVelocityCurve is null!");
+        }
 
         let vert: VertexColor[] = [];
         let idx: number[] = [];

@@ -68,7 +68,6 @@ export class Galaxy {
         //
         // 1.) Initialize the stars
         //
-
         let cdf: CumulativeDistributionFunction = new CumulativeDistributionFunction();
         cdf.setupRealistic(
             1.0,				    // maximum intensity
@@ -103,7 +102,6 @@ export class Galaxy {
         // 2.) Initialise Dust:
         //
         //	The galaxy gets as many dust clouds as stars
-
         let x: number = 0;
         let y: number = 0;
         let rad: number = 0;
@@ -135,7 +133,6 @@ export class Galaxy {
         //
         // 3.) Initialize additional dust filaments
         //
-
         for (let i = 0; i < this._numStars / 100; ++i) {
             rad = cdf.valFromProb(Helper.rnum());
 
@@ -168,7 +165,6 @@ export class Galaxy {
         //
         // 4.) Initialise H2 regions
         // 
-
         for (let i = 0; i < this._numH2; ++i) {
             x = 2 * this._radGalaxy * Helper.rnum() - this._radGalaxy;
             y = 2 * this._radGalaxy * Helper.rnum() - this._radGalaxy;
@@ -275,7 +271,6 @@ export class Galaxy {
         // Calculate velocity in degree per year
         let u: number = 2.0 * Math.PI * rad * Helper.PC_TO_KM;
         let time: number = u / (vel_kms * Helper.SEC_PER_YEAR);
-
         return 360.0 / time;
     }
 

@@ -14,8 +14,7 @@ try {
   galaxy = new GalaxyRenderer(canvas);
   uiController = new UiController(galaxy);
 
-}
-catch (e) {
+} catch (e) {
   if (e instanceof Error) {
     alert(e.message);
   }

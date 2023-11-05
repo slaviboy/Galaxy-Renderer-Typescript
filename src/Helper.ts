@@ -262,7 +262,7 @@ export class Helper {
 	}
 
 	private static massDisc(r: number): number {
-		let d: number = 2000;		// Dicke der Scheibe
+		let d: number = 2000;	// Dicke der Scheibe
 		let rho_so: number = 1;	// Dichte im Mittelpunkt
 		let rH: number = 2000;	// Radius auf dem die Dichte um die Hälfte gefallen ist
 		return rho_so * Math.exp(-r / rH) * (r * r) * Math.PI * d;

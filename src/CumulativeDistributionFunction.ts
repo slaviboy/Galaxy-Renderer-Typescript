@@ -3,24 +3,22 @@ export class CumulativeDistributionFunction {
     }
 
     public probFromVal(fVal: number): number {
-        if (fVal < this.min || fVal > this.max)
+        if (fVal < this.min || fVal > this.max) {
             throw new Error("out of range");
-
+        }
         let h: number = 2 * ((this.max - this.min) / this.steps);
         let i: number = ((fVal - this.min) / h);
         let remainder: number = fVal - i * h;
-
         return (this.y1[i] + this.m1[i] * remainder);
     }
 
     public valFromProb(fVal: number): number {
-        if (fVal < 0 || fVal > 1)
+        if (fVal < 0 || fVal > 1) {
             throw new Error("out of range");
-
+        }
         let h: number = 1.0 / (this.y2.length - 1);
         let i: number = Math.floor(fVal / h);
         let remainder = fVal - i * h;
-
         return (this.y2[i] + this.m2[i] * remainder);
     }
 
@@ -35,12 +33,10 @@ export class CumulativeDistributionFunction {
         this.min = min;
         this.max = max;
         this.steps = nsteps;
-
         this.i0 = i0;
         this.k = k;
         this.a = a;
         this.r_bulge = rad_bulge;
-
         this.buildCdf(nsteps);
     }
 
@@ -80,18 +76,16 @@ export class CumulativeDistributionFunction {
         for (let i = 0; i < this.steps; i += 2) {
             x = h * (i + 2);
             y += h / 3 * (this.intensity(this.min + i * h) + 4 * this.intensity(this.min + (i + 1) * h) + this.intensity(this.min + (i + 2) * h));
-
             this.m1.push((y - this.y1[this.y1.length - 1]) / (2 * h));
             this.x1.push(x);
             this.y1.push(y);
-
-            //    printf("%2.2f, %2.2f, %2.2f\n", m_fMin + (i+2) * h, v, h);
         }
         this.m1.push(0.0);
 
         // all arrays must have the same length
-        if (this.m1.length != this.x1.length || this.m1.length != this.y1.length)
+        if (this.m1.length != this.x1.length || this.m1.length != this.y1.length) {
             throw new Error("CumulativeDistributionFunction::BuildCDF: array size mismatch (1)!");
+        }
 
         // normieren
         for (let i = 0; i < this.y1.length; ++i) {
@@ -106,15 +100,7 @@ export class CumulativeDistributionFunction {
         h = 1.0 / nsteps;
         for (let i = 1, k = 0; i < nsteps; ++i) {
             p = i * h;
-
-            for (; this.y1[k + 1] <= p; ++k) {
-            }
-
-
             y = this.x1[k] + (p - this.y1[k]) / this.m1[k];
-
-            //    printf("%2.4f, %2.4f, k=%d, %2.4f, %2.4f\n", p, y, k, m_vY1[k], m_vM1[k]);
-
             this.m2.push((y - this.y2[this.y2.length - 1]) / h);
             this.x2.push(p);
             this.y2.push(y);
@@ -122,8 +108,9 @@ export class CumulativeDistributionFunction {
         this.m2.push(0.0);
 
         // all arrays must have the same length
-        if (this.m2.length != this.x2.length || this.m2.length != this.y2.length)
+        if (this.m2.length != this.x2.length || this.m2.length != this.y2.length) {
             throw new Error("CumulativeDistributionFunction::BuildCDF: array size mismatch (1)!");
+        }
     }
 
     private intensityBulge(r: number, i0: number, k: number): number {
