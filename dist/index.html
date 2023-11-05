@@ -9,8 +9,10 @@
 
 <body>
 
+	<canvas id="cvGalaxy"></canvas>
+
 	<div class="container">
-		<div class="center">
+		<div class="left">
 			<div class="row" style="text-align: left;">
 				<div class="column-30 controls">
 					<form>
@@ -89,7 +91,7 @@
 
 							<div class="slider">
 								<label for="slFov">Field of view</label><br />
-								<input type="range" min="5000" max="50000" value="50" class="slider" id="slFov">
+								<input type="range" min="5000" max="100000" value="50" class="slider" id="slFov">
 								<span id="labelFov"></span>
 							</div>
 
@@ -100,20 +102,6 @@
 							</div>
 						</fieldset>
 
-					</form>
-				</div> 
-
-				<div class="column-70">
-					<h1 style="text-align: center; margin:px;">Procedural generation of spiral Galaxies</h1>
-
-					<div style="position:relative;">
-						<canvas id="cvGalaxy" width="700" height="700"></canvas>
-					</div>
-
-				</div>
-
-				<div class="column-30 controls">
-					<form>
 						<fieldset>
 							<h3>Density Waves</h3>
 							<div class="slider">
@@ -161,12 +149,24 @@
 
 						</fieldset>
 					</form>
-				</div> 
-			</div> 
+				</div>
+			</div>
 		</div>
-	</div> 
+	</div>
 
+	<script>
+		var canvas = document.getElementById("cvGalaxy");
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+		canvas.style.width = window.innerWidth;
+		canvas.style.height = window.innerHeight;
+
+		var ctx = canvas.getContext("webgl2");
+		ctx.fillStyle = "rgb(9, 9, 30)";
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+	</script>
 	<script src="./js/galaxy-renderer.js"></script>
 	<script src="./js/script.js"></script>
 </body>
+
 </html>
