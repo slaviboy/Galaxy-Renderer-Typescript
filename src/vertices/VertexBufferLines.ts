@@ -1,5 +1,6 @@
-import { Vec3, Color, VertexColor } from './Types'
-import { VertexBufferBase, AttributeDefinition } from './VertexBufferBase'
+import { VertexColor } from '../entities/VertexColor'
+import { VertexBufferBase } from './VertexBufferBase'
+import { AttributeDefinition } from '../core/AttributeDefinition'
 
 export class VertexBufferLines extends VertexBufferBase<VertexColor>
 {

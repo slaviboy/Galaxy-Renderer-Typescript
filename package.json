@@ -8,7 +8,7 @@
     "prod": "webpack --mode production"
   },
   "keywords": ["galaxy", "simulation", "density wave theory"],
-  "author":"Ingo Berg <galaxy-renderer@beltoforion.de>",
+  "author":"None",
   "license": "MIT",
   "devDependencies": {
     "typescript": "^5.2.2",

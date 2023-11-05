@@ -1,21 +1,6 @@
 import { mat4 } from 'gl-matrix'
-import { VertexBase } from './Types'
-
-export class AttributeDefinition {
-	constructor(
-		attribIdx: number = 0,
-		size: number = 0,
-		offset: number = 0) {
-		this.attribIdx = attribIdx;
-		this.size = size;
-		this.offset = offset;
-	}
-
-	attribIdx: number = 0;
-	size: number = 0;
-	offset: number = 0;
-}
-
+import { VertexBase } from '../entities/VertexBase'
+import { AttributeDefinition } from '../core/AttributeDefinition'
 
 export abstract class VertexBufferBase<TVertex extends VertexBase>
 {

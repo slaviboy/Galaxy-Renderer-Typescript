@@ -1,4 +1,4 @@
-import { Color } from './Types'
+import { Color } from '../entities/Color'
 
 export class Helper {
 	public static PC_TO_KM: number = 3.08567758129e13;

@@ -1,7 +1,7 @@
 import { mat4 } from 'gl-matrix'
-
-import { Vec3, Color, VertexStar, Star } from './Types'
-import { VertexBufferBase, AttributeDefinition } from './VertexBufferBase'
+import { VertexStar } from '../entities/VertexStar'
+import { VertexBufferBase } from './VertexBufferBase'
+import { AttributeDefinition } from '../core/AttributeDefinition'
 
 export class VertexBufferStars extends VertexBufferBase<VertexStar>
 {

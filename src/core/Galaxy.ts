@@ -1,5 +1,6 @@
-import { Star, GalaxyParam } from './Types'
-import { Helper } from './Helper'
+import { Star } from '../entities/Star'
+import { GalaxyParam } from '../entities/GalaxyParam'
+import { Helper } from '../helpers/Helper'
 import { CumulativeDistributionFunction } from './CumulativeDistributionFunction'
 
 export class Galaxy {

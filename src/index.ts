@@ -1,5 +1,5 @@
-import { GalaxyRenderer } from './GalaxyRenderer'
-import { UiController } from './UiController'
+import { GalaxyRenderer } from './core/GalaxyRenderer'
+import { UiController } from './ui/UiController'
 
 export var galaxy: GalaxyRenderer | null = null
 export var uiController: UiController | null = null

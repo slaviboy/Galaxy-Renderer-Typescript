@@ -1,9 +1,13 @@
 import { mat4, vec3 } from 'gl-matrix'
 
-import { Color, GalaxyParam, Vec3, VertexColor, VertexStar, Star } from './Types'
-import { Helper } from './Helper'
-import { VertexBufferLines } from './VertexBufferLines'
-import { VertexBufferStars } from './VertexBufferStars';
+import { Color } from '../entities/Color'
+import { GalaxyParam } from '../entities/GalaxyParam'
+import { VertexColor } from '../entities/VertexColor'
+import { VertexStar } from '../entities/VertexStar'
+import { Star } from '../entities/Star'
+import { Helper } from '../helpers/Helper'
+import { VertexBufferLines } from '../vertices/VertexBufferLines'
+import { VertexBufferStars } from '../vertices/VertexBufferStars';
 import { Galaxy } from './Galaxy'
 
 enum DisplayItem {
